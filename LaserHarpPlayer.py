@@ -1,5 +1,7 @@
 #ON means sound is ON
 
+#Make sure thresholf isn't too high like 850. Instead choose ~500-600.
+#Ambient is ~200.
 
 import serial,time, sched
 import pygame
@@ -28,7 +30,7 @@ ser = serial.Serial('COM3', 9600)
 #checks the state of the arduino
 def check_state(sc): 
     
-    global ser
+    #global ser
    
     st = str(ser.readline()).split(",")
     return st

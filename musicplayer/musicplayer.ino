@@ -4,7 +4,7 @@ int analogPin1 = 1;     // potentiometer wiper (middle terminal) connected to an
 int analogPin2 = 2;     // potentiometer wiper (middle terminal) connected to analog pin 2
                        // outside leads to ground and +5V
 float val[] ={0,0,0};           // variable to store the value read
-
+int threshold=600;
 void setup()
 {
   Serial.begin(9600);              //  setup serial
@@ -15,33 +15,33 @@ void loop()
   val[0] = analogRead(analogPin0);     // read the input pin
   val[1] = analogRead(analogPin1);     // read the input pin
   val[2] = analogRead(analogPin2);     // read the input pin
-
-
-  if (val[0] < 850)
+  //Serial.print(val[0],DEC); //Check value for sensor since it isn't reading anything
+  //Serial.print(val[1],DEC);
+  if (val[0] > threshold)
 {
   Serial.print("OFF");
   Serial.print(",");
 }
-  if (val[0] > 850)
+  if (val[0] < threshold)
 {
   Serial.print("ON");
   Serial.print(",");
 }
-  if (val[1] < 850)
+  if (val[1] > threshold)
 {
   Serial.print("OFF");
   Serial.print(",");
 }
-  if (val[1] > 850)
+  if (val[1] < threshold)
 {
   Serial.print("ON");
   Serial.print(",");
 }
-  if (val[2] < 850)
+  if (val[2] > threshold)
 {
   Serial.println("OFF");
 }
-  if (val[2] > 850)
+  if (val[2] < threshold)
 {
   Serial.println("ON");
 }   
